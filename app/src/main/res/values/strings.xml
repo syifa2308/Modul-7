@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Modul7</string>
+    <string name="title">title</string>
+    <string name="description">description</string>
+    <string name="submit">Submit</string>
+    <string name="delete">Delete</string>
 </resources>
