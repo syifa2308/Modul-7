@@ -9,8 +9,8 @@
 
     <ImageButton
         android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="75dp"
+        android:layout_height="73dp"
         android:layout_margin="16dp"
         android:contentDescription="@string/delete"
         android:srcCompat="@drawable/ic_baseline_delete_24"
@@ -46,11 +46,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_description"
-            android:layout_width="match_parent"
+            android:layout_width="394dp"
             android:layout_height="wrap_content"
             android:hint="@string/description"
-            android:inputType="textCapSentences"
-            android:maxLines="1" />
+            android:inputType="textCapSentences" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

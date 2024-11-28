@@ -4,39 +4,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.modul7.databinding.ItemHomeworkBinding
 
 class HomeworkAdapter(private val onItemClickCallback: OnItemClickCallback) :
     RecyclerView.Adapter<HomeworkAdapter.HomeworkViewHolder>() {
 
-    var listHomework = ArrayList<Homework>()
+    private val listHomework = ArrayList<Homework>()
 
-    set(listHomework) {
-        if (listHomework.size > 0) {
-            this.listHomework.clear()
-        }
-        this.listHomework.addAll(listHomework)
-    }
 
     interface OnItemClickCallback {
-        fun onItemClicked(selectedHomework: Homework?, position: Int?)
+        fun onItemClicked(selectedHomework: Homework, position: Int)
     }
 
-    // Tambahkan ViewHolder dan fungsi adapter lainnya jika diperlukan
+
+    fun setHomeworkList(newList: List<Homework>) {
+        listHomework.clear()
+        listHomework.addAll(newList)
+        notifyDataSetChanged()
     }
+
+
     fun addItem(homework: Homework) {
-        this.listHomework.add(homework)
-        notifyItemInserted( this.listHomework.size - 1)
+        listHomework.add(homework)
+        notifyItemInserted(listHomework.size - 1)
     }
 
     fun updateItem(position: Int, homework: Homework) {
-        this.listHomework[position] = homework
-        notifyItemChanged(position, homework)
+        if (position in 0 until listHomework.size) {
+            listHomework[position] = homework
+            notifyItemChanged(position)
+        }
     }
 
+
     fun removeItem(position: Int) {
-        this.listHomework.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeChanged(position, this.listHomework.size)
+        if (position in 0 until listHomework.size) {
+            listHomework.removeAt(position)
+            notifyItemRemoved(position)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeworkViewHolder {
@@ -48,14 +53,19 @@ class HomeworkAdapter(private val onItemClickCallback: OnItemClickCallback) :
         holder.bind(listHomework[position])
     }
 
-    override fun getItemCount(): Int = this.listHomework.size
+    override fun getItemCount(): Int = listHomework.size
 
+    /**
+     * ViewHolder untuk menampilkan data Homework
+     */
     inner class HomeworkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemHomeworkBinding.bind(itemView)
+
         fun bind(homework: Homework) {
             binding.tvItemTitle.text = homework.title
             binding.tvItemDate.text = homework.date
             binding.tvItemDescription.text = homework.description
+
             binding.cvItemHomework.setOnClickListener {
                 onItemClickCallback.onItemClicked(homework, adapterPosition)
             }
