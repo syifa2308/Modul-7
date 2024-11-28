@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.modul7"
-    compileSdk = 34
+    compileSdk = 35
 
 
     defaultConfig {
@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+    implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
