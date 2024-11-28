@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
     namespace = "com.example.modul7"
     compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.example.modul7"
@@ -15,6 +17,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures{
+    viewBinding=true
     }
 
     buildTypes {
@@ -37,6 +43,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
